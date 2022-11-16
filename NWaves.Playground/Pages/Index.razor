@@ -1,9 +1,17 @@
 ﻿@page "/"
 @inject IJSRuntime jsRuntime
 
-<h3>Welcome to NWaves playground</h3>
 
-<MatFileUpload Label="Drop a single WAV file here or Browse" OnChange="@FileReady" style="padding: 18px; width: 360px; margin: 20px;"></MatFileUpload>
+<div class="p-5 text-center bg-image rounded-3" style="
+    background-image: url('http://maharin.id/Backup_of_background%20PPT.jpg');
+    background-repeat: no-repeat;
+    height:200px;
+    background-size: 100%;">
+</div>
+<h3></h3>
+
+<MatFileUpload Label="Drop a single WAV file here or Browse" OnChange="@FileReady" style="padding: 30px; width: 360px; margin-left: auto;
+    margin-right: auto; background :#e8f5fb"></MatFileUpload>
 
 <div id="audios">
 
