@@ -41,6 +41,7 @@
 
 .main[b-xzj9zswa4n] {
     flex: 1;
+    background-color: white;
 }
 
 .sidebar[b-xzj9zswa4n] {
@@ -52,9 +53,9 @@
     padding: 0;
     box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
     color: #fff;
-    background-blend-mode:screen;
+    background-blend-mode: screen;
     background: darkslategray;
-    background: linear-gradient(180deg, rgba(47,79,79,1) 0%, rgba(66,152,190,1) 100%);
+    background: linear-gradient(180deg, rgba(47, 79, 79, 1) 0%, rgba(66, 152, 190, 1) 100%);
 }
 
 .top-row[b-xzj9zswa4n] {
