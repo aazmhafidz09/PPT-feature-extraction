@@ -5,6 +5,10 @@
       "url": "assets\/favicon.ico"
     },
     {
+      "hash": "sha256-lYjN8ztkM75\/OSG+RdzMxuv\/\/MO7AAQzWnalEBCx8RQ=",
+      "url": "assets\/img\/Backup_of_background PPT.jpg"
+    },
+    {
       "hash": "sha256-9VL\/TKMqPvnROwPQuazcMkPJxq4mJeCtaT0bexFWXG4=",
       "url": "assets\/img\/bg-masthead.jpg"
     },
@@ -361,5 +365,5 @@
       "url": "_framework\/blazor.webassembly.js"
     }
   ],
-  "version": "st\/M0I78"
+  "version": "Io86xg8Y"
 };
