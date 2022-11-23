@@ -5,7 +5,7 @@
 <MatToastContainer />
 
 <div id="main">
-    <MatSelectItem Label="MFCC settings" @bind-Value="@MfccMode" Items="@_mfccModes"></MatSelectItem>
+    
 
     <MatAccordion Multi style="margin-top: 25px; margin-bottom: 25px;">
         <MatExpansionPanel>
@@ -112,12 +112,10 @@
         </MatExpansionPanel>
     </MatAccordion>
 
-    <a id="github" href="https://github.com/ar1st0crat/NWaves/wiki/MFCC-and-Mel-Spectrogram">Read more about MFCC settings...</a>
+    
 
     <MatButton Dense Icon="check_circle" OnClick="@ComputeMfcc">Compute</MatButton>
     <MatButton Dense Icon="check_circle" OnClick="@ShowPythonCode">Show Python code</MatButton>
-    <MatButton Dense Icon="check_circle" OnClick="@ShowSharpCode">Show C# code</MatButton>
-    <MatButton Dense Icon="check_circle" OnClick="@ShowJson">Show JSON</MatButton>
 
     @if (_vectors != null)
     {
@@ -210,7 +208,7 @@
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        MfccMode = MfccMode.Custom;
+        MfccMode = MfccMode.Librosa;
     }
 
     void ComputeMfcc()
@@ -321,7 +319,7 @@
                 SetPythonSpeechFeaturesDefaults();
                 break;
             default:
-                SetMfccDefaults();
+                SetLibrosaDefaults();
                 break;
         }
 
@@ -356,7 +354,7 @@
             SamplingRate = Signal.SamplingRate,
             FeatureCount = 13,
             FrameSize = fftSize,
-            HopSize = 512,
+            HopSize = 320,
             FilterBank = FilterBanks.MelBankSlaney(_melCount, fftSize, Signal.SamplingRate, _options.LowFrequency, _options.HighFrequency),
             SpectrumType = SpectrumType.Power,
             NonLinearity = NonLinearityType.ToDecibel,
@@ -439,7 +437,7 @@
 
     void ShowPythonCode()
     {
-        _sourceCode = MfccTemplates.PythonCode(_mfccMode, _options, _inSeconds, _removeDcOffset);
+        _sourceCode = MfccTemplates.PythonCode(MfccMode.Librosa, _options, _inSeconds, _removeDcOffset);
         _showCodeSnippet = true;
     }
 

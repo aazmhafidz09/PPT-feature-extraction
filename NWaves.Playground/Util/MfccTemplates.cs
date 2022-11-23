@@ -7,7 +7,7 @@ namespace NWaves.Playground.Util
     {
         const string LibrosaPythonTemplate = "import librosa\n\n" +
                            "signal, sr = librosa.load(FILE_PATH, sr=None)\n\n" +
-                           "m = librosa.feature.mfcc(\n" +
+                           "mfcc = librosa.feature.mfcc(\n" +
                            "    signal,\n" +
                            "    {0},\n" +
                            "    n_mfcc={1},\n" +
@@ -22,15 +22,15 @@ namespace NWaves.Playground.Util
                            "    hop_length={9},\n" +
                            "    lifter={10},\n" +
                            "    power={11},\n" +
-                           "    center=False)\n\n" +
-                           "m[:, 0]   # get the first vector\n";
+                           "    center=False).T\n\n" +
+                           "mfcc[:, 0]   # get the first vector\n";
 
         const string PsfPythonTemplate = "import python_speech_features\n" +
                                    "import scipy.io.wavfile as wav\n" +
                                    "import numpy\n\n" +
                                    "sr, signal = wav.read(FILE_PATH)\n\n" +
                                    "signal = signal / 32768\n\n" +
-                                   "m = python_speech_features.base.mfcc(\n" +
+                                   "mfcc = python_speech_features.base.mfcc(\n" +
                                    "    signal,\n" +
                                    "    samplerate={0},\n" +
                                    "    winlen={1},\n" +
@@ -43,13 +43,13 @@ namespace NWaves.Playground.Util
                                    "    preemph={8},\n" +
                                    "    ceplifter={9},\n" +
                                    "    appendEnergy={10},\n" +
-                                   "    winfunc={11})\n\n" +
-                                   "m[0]   # get the first vector\n";
+                                   "    winfunc={11}).T\n\n" +
+                                   "mfcc[0]   # get the first vector\n";
 
         const string KaldiPythonTemplate = "import torchaudio\n" +
                                      "import torchaudio.compliance.kaldi\n\n" +
                                      "signal, sample_rate = torchaudio.load(FILE_PATH)\n\n" +
-                                     "m = torchaudio.compliance.kaldi.mfcc(\n" +
+                                     "mfcc = torchaudio.compliance.kaldi.mfcc(\n" +
                                      "    signal,\n" +
                                      "    {0},\n" +
                                      "    num_ceps={1},\n" +
@@ -62,8 +62,8 @@ namespace NWaves.Playground.Util
                                      "    cepstral_lifter={8},\n" +
                                      "    preemphasis_coefficient={9},\n" +
                                      "    use_energy={10},\n" +
-                                     "    remove_dc_offset={11})\n\n" +
-                                     "m[0]   # get the first vector\n";
+                                     "    remove_dc_offset={11}).T\n\n" +
+                                     "mfcc[0]   # get the first vector\n";
 
         const string PytorchPythonTemplate = "import torchaudio\n" +
                                        "import torchaudio.transforms as T\n" +
@@ -84,7 +84,7 @@ namespace NWaves.Playground.Util
                                        "       'norm': None        # or 'slaney' if in librosa norm='slaney'\n" +
                                        "       }}\n" +
                                        "    )\n\n" +
-                                       "m = mfcc_transform(signal)\n\n" +
+                                       "mfcc = mfcc_transform(signal)\n\n" +
                                        "#librosa: \n" +
                                        "melspec = librosa.feature.melspectrogram(\n" +
                                        "    y=signal.numpy()[0], sr={0}, n_fft={3},\n" +
@@ -94,7 +94,7 @@ namespace NWaves.Playground.Util
                                        "mfcc_librosa = librosa.feature.mfcc(\n" +
                                        "    S = librosa.core.spectrum.power_to_db(melspec),\n" +
                                        "    n_mfcc={1}, dct_type=2, norm='ortho')\n\n" +
-                                       "m[0][:, 0]   # get the first vector\n";
+                                       "mfcc[0][:, 0]   # get the first vector\n";
 
         const string MelSpectrogramPythonTemplate = "import torchaudio\n" +
                                "import torchaudio.transforms as T\n" +
