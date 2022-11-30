@@ -6,10 +6,10 @@ namespace NWaves.Playground.Util
     public static class MfccTemplates
     {
         const string LibrosaPythonTemplate = "import librosa\n\n" +
-                           "signal, sr = librosa.load(FILE_PATH, sr=None)\n\n" +
+                           "wavData, sr = librosa.load(FILE_PATH, sr=16000)\n\n" +
                            "mfcc = librosa.feature.mfcc(\n" +
-                           "    signal,\n" +
-                           "    {0},\n" +
+                           "    wavData,\n" +
+                           "    16000,\n" +
                            "    n_mfcc={1},\n" +
                            "    dct_type={2},\n" +
                            "    norm={3},\n" +
@@ -99,23 +99,13 @@ namespace NWaves.Playground.Util
         const string MelSpectrogramPythonTemplate = "import torchaudio\n" +
                                "import torchaudio.transforms as T\n" +
                                "import librosa\n\n" +
-                               "signal, sample_rate = torchaudio.load(FILE_PATH)\n\n" +
-                               "mel_spectrogram = T.MelSpectrogram(\n" +
-                               "    sample_rate={0},\n" +
-                               "    win_length={1}, hop_length={2},\n" +
-                               "    n_fft={3},\n" +
-                               "    power={4},\n" +
-                               "    n_mels={5},\n" +
-                               "    f_min={6}, f_max={7},\n" +
-                               "    center=False, mel_scale={9}, norm={8})\n\n" +
-                               "melspec = mel_spectrogram(signal)\n\n" +
-                               "#librosa: \n" +
-                               "melspec_librosa = librosa.feature.melspectrogram(\n" +
-                               "    y=signal.numpy()[0], sr={0}, n_fft={3},\n" +
+                               "wavData, sample_rate = torchaudio.load(FILE_PATH)\n\n" +                               
+                               "melspec = librosa.feature.melspectrogram(\n" +
+                               "    y=wavData.numpy()[0], sr={0}, n_fft={3},\n" +
                                "    win_length={1}, hop_length={2},\n" +
                                "    n_mels={5}, fmin={6}, fmax={7},\n" +
                                "    power={4}, htk={10}, norm={8}, center=False)\n\n" +
-                               "melspec[0][:, 0]   # get the first vector\n";
+                               "melspec[:, 0]   # get the first vector\n";
 
         const string LibrosaCSharpTemplate = "var options = new MfccOptions\n{{\n" +
                    "    SamplingRate = {0},\n" +

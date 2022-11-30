@@ -1,4 +1,6 @@
 ﻿@inject IMatToaster Toaster
+@inject IJSRuntime jsRuntime
+
 
 @using NWaves.Playground.Util;
 
@@ -116,9 +118,13 @@
 
     <MatButton Dense Icon="check_circle" OnClick="@ComputeMfcc">Compute</MatButton>
     <MatButton Dense Icon="check_circle" OnClick="@ShowPythonCode">Show Python code</MatButton>
+   
 
+    
+    
     @if (_vectors != null)
     {
+
         <MatTable Items="@_vectors.WithTimeMarkers(_extractor)" PageSize="10" Striped AllowSelection class="mat-elevation-z5">
             <MatTableHeader>
                 <th class="coeff" style="min-width: 120px;">time pos</th>
@@ -135,6 +141,8 @@
                     }
             </MatTableRow>
         </MatTable>
+
+
     }
 </div>
 
@@ -440,6 +448,16 @@
         _sourceCode = MfccTemplates.PythonCode(MfccMode.Librosa, _options, _inSeconds, _removeDcOffset);
         _showCodeSnippet = true;
     }
+
+   // void ExportCSV()
+   // {
+   //     service.Export("MFCC", ".csv", new Query()
+   //         {
+   //             OrderBy = grid.Query.OrderBy,
+   //             Filter = grid.Query.Filter,
+   //             Select = string.Join(",", grid.ColumnsCollection.Where(c => c.GetVisible()).Select(c => c.Property))
+   //         });
+   // }
 
     void ShowSharpCode()
     {
